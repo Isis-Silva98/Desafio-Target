@@ -1,0 +1,47 @@
+RESOLUÇÃO 01
+package main
+
+import (
+	"fmt"
+)
+
+
+func pertenceFibonacci(n int) bool {
+	if n < 0 {
+		return false
+	}
+	if n == 0 || n == 1 {
+		return true
+	}
+
+	a, b := 0, 1
+	for b < n {
+		a, b = b, a+b
+	}
+
+	return b == n
+}
+
+func main() {
+	var numero int
+	fmt.Print("Digite um número: ")
+	_, err := fmt.Scanf("%d", &numero)
+	if err != nil {
+		fmt.Println("Entrada inválida.")
+		return
+	}
+
+	if pertenceFibonacci(numero) {
+		fmt.Printf("O número %d pertence à sequência de Fibonacci.\n", numero)
+	} else {
+		fmt.Printf("O número %d não pertence à sequência de Fibonacci.\n", numero)
+	}
+}
+
+
+
+
+
+
+
+
