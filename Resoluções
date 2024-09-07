@@ -44,7 +44,208 @@ func main() {
 
 
 
+RESOLUÇÃO 02 
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+
+func contarA(s string) (existe bool, contagem int) {
+	s = strings.ToLower(s)
+	contagem = strings.Count(s, "a")
+	existe = contagem > 0
+	return
+}
+
+func main() {
+	var texto string
+	fmt.Print("Digite uma palavra: ")
+	_, err := fmt.Scanf("%s", &texto)
+	if err != nil {
+		fmt.Println("Erro, digite somente letras")
+		return
+	}
+
+	existe, contagem := contarA(texto)
+	if existe {
+		fmt.Printf("A letra 'a' aparece %d vez(es).\n", contagem)
+	} else {
+		fmt.Println("A letra 'a' não aparece.")
+	}
+}
 
 
 
 
+
+
+RESOLUÇÃO 03 
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	
+	indice := 12
+	soma := 0
+	k := 1
+
+	
+	for k < indice {
+		k = k + 1
+		soma = soma + k
+	}
+
+	
+	fmt.Println(soma)
+}
+
+O resultado é 77.
+
+
+
+
+
+
+
+RESOLUÇÃO 04 
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// Sequência a) 1, 3, 5, 7, ___
+	fmt.Println("Sequência a:")
+	a := []int{1, 3, 5, 7}
+	proximoA := a[len(a)-1] + 2
+	fmt.Println("Próximo elemento:", proximoA)
+
+	// Sequência b) 2, 4, 8, 16, 32, 64, ____
+	fmt.Println("Sequência b:")
+	b := []int{2, 4, 8, 16, 32, 64}
+	proximoB := b[len(b)-1] * 2
+	fmt.Println("Próximo elemento:", proximoB)
+
+	// Sequência c) 0, 1, 4, 9, 16, 25, 36, ____
+	fmt.Println("Sequência c:")
+	c := []int{0, 1, 4, 9, 16, 25, 36}
+	proximoC := (len(c)) * (len(c)) 
+	fmt.Println("Próximo elemento:", proximoC)
+
+	// Sequência d) 4, 16, 36, 64, ____
+	fmt.Println("Sequência d:")
+	d := []int{4, 16, 36, 64}
+	proximoD := (len(d) * 2) * (len(d) * 2) 
+	fmt.Println("Próximo elemento:", proximoD)
+
+	// Sequência e) 1, 1, 2, 3, 5, 8, ____
+	fmt.Println("Sequência e:")
+	e := []int{1, 1, 2, 3, 5, 8}
+	proximoE := e[len(e)-1] + e[len(e)-2] 
+	fmt.Println("Próximo elemento:", proximoE)
+
+	// Sequência f) 2, 10, 12, 16, 17, 18, 19, ____
+	fmt.Println("Sequência f:")
+	f := []int{2, 10, 12, 16, 17, 18, 19}
+
+	proximoF := f[len(f)-1] + 1
+	for proximoF%3 == 0 || proximoF%7 == 0 {
+		proximoF++
+	}
+	fmt.Println("Próximo elemento:", proximoF)
+}
+ Resposta do programa : 
+Sequência a:
+Próximo elemento: 9
+Sequência b:
+Próximo elemento: 128
+Sequência c:
+Próximo elemento: 49
+Sequência d:
+Próximo elemento: 64
+Sequência e:
+Próximo elemento: 13
+Sequência f:
+Próximo elemento: 20
+
+
+
+
+
+RESOLUÇÃO 05 
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+
+const (
+	Desligada = iota
+	Acesa
+	Quente
+)
+
+
+func main() {
+	
+	interruptores := map[string]bool{
+		"A": false, 
+		"B": false,
+		"C": false,
+	}
+
+	
+	lampadas := map[string]int{
+		"Lâmpada 1": Desligada,
+		"Lâmpada 2": Desligada,
+		"Lâmpada 3": Desligada,
+	}
+
+	
+	interruptores["A"] = true
+	fmt.Println("Interruptor A ligado...")
+	time.Sleep(2 * time.Second) 
+
+	
+	interruptores["A"] = false
+	interruptores["B"] = true
+	fmt.Println("Interruptor A desligado e Interruptor B ligado...")
+
+	
+	lampadas["Lâmpada 1"] = Quente
+	
+	lampadas["Lâmpada 2"] = Acesa
+	
+	lampadas["Lâmpada 3"] = Desligada
+
+	
+	fmt.Println("\nObservação das lâmpadas:")
+	for nome, estado := range lampadas {
+		switch estado {
+		case Acesa:
+			fmt.Printf("%s está ACESA e é controlada pelo Interruptor B.\n", nome)
+		case Quente:
+			fmt.Printf("%s está DESLIGADA e QUENTE e é controlada pelo Interruptor A.\n", nome)
+		case Desligada:
+			fmt.Printf("%s está DESLIGADA e FRIA e é controlada pelo Interruptor C.\n", nome)
+		}
+	}
+}
+
+resposta do programa: 
+Interruptor A ligado
+Interruptor A desligado e Interruptor B ligado
+
+Observação das lâmpadas:
+Lâmpada 2 está ACESA e é controlada pelo Interruptor B.
+Lâmpada 3 está DESLIGADA e FRIA e é controlada pelo Interruptor C.
+Lâmpada 1 está DESLIGADA e QUENTE e é controlada pelo Interruptor A.
